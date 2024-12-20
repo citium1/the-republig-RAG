@@ -3,7 +3,16 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain_openai import OpenAIEmbeddings
 from pinecone import Pinecone
 from langchain_pinecone import PineconeVectorStore
+from dotenv import load_dotenv
 
+import os
+
+load_dotenv()
+
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+INDEX_NAME = "langchain-rag"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+PINECONE_ENVIRONMENT = "us-east-1-aws"
 
 try:
     # Initialize Pinecone

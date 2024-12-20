@@ -2,7 +2,17 @@ from pinecone import Pinecone, ServerlessSpec
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
+from dotenv import load_dotenv
 import time
+import os
+
+load_dotenv()
+
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+INDEX_NAME = "langchain-rag"
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+PINECONE_ENVIRONMENT = "us-east-1-aws"
+
 
 try:
     # Initialize Pinecone
@@ -39,7 +49,7 @@ try:
     
     # Load the PDF documents
     print("Loading PDF documents...")
-    loader = PyPDFLoader("../data/the_republic_plato.pdf")
+    loader = PyPDFLoader("rag/data/the_republic_plato.pdf")
     documents = loader.load()
 
     # Split documents into chunks
